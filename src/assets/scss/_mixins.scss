@@ -1,0 +1,84 @@
+
+/* 
+
+	USAGE EXAMPLE
+
+	@include flex-center();
+
+*/
+
+
+@mixin center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* 
+
+	USAGE EXAMPLE
+
+	@include abs(opt, opt, opt, opt);
+
+*/
+
+@mixin abs($top: 0, $left: 0, $bottom: auto, $right: auto) {
+	position: absolute;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}
+
+/* 
+
+	USAGE EXAMPLE
+
+	@include gradient(red, blue, opt);
+
+*/
+
+
+@mixin gradient($start-color, $end-color, $orientation: horizonal) { 
+    background: $start-color;
+
+	@if $orientation == 'vertical'
+	{
+      background: -webkit-linear-gradient(top, $start-color, $end-color);
+      background: linear-gradient(to bottom, $start-color, $end-color);
+	}
+	@else if $orientation == 'horizontal'
+	{
+      background: -webkit-linear-gradient(left, $start-color, $end-color);
+      background: linear-gradient(to right, $start-color, $end-color);
+	}
+	@else
+	{
+      background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+      background: radial-gradient(ellipse at center, $start-color, $end-color);
+    }
+}
+
+/* 
+
+	USAGE EXAMPLE
+
+	@include columns(3);
+
+*/
+
+@mixin columns($column-count) {
+	display: grid;
+	grid-template-columns: repeat($column-count, 1fr);
+}
+
+@mixin serif {
+	font-family: 'Amiri', serif;
+}
+
+@mixin no-scrollbar {
+	&::-webkit-scrollbar {
+		display: none;
+		width: 0;
+	}
+}
